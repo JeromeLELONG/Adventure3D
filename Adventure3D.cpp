@@ -11,6 +11,7 @@
 #include "cOnscreenText.h"
 
 #include <imgui.h>
+#include <stdio.h>
 
 #include "adventure_3d_game.hpp"
 

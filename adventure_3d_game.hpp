@@ -152,6 +152,7 @@ private:
     PT(CMetaInterval) m_lightBlinkIntervalPtr;
     vector<PT(DoubleLerpFunctionInterval)> m_moveIntervalPtrVec;
     vector<DoubleLerpFunctionInterval::LerpFunc*> m_lerpFuncPtrVec;
+    bool scene_loaded;
     NodePath m_titleNp;
     NodePath m_carouselNp;
     NodePath m_lights1Np;
@@ -161,6 +162,7 @@ private:
     vector<NodePath> m_modelsNp;
     static void sys_exit(const Event* eventPtr, void* dataPtr);
     static void removeNode(const Event* eventPtr, void* dataPtr);
+    static void addNodes(const Event* eventPtr, void* dataPtr);
 };
 
 // ************************************************************************************************
