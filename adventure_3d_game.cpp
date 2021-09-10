@@ -151,6 +151,7 @@ Adventure3D::~Adventure3D()
 void Adventure3D::init_scene(WindowFramework* windowFrameworkPtr)
 {
     m_windowFrameworkPtr = windowFrameworkPtr;
+    scene_loaded = true;
     // preconditions
     if (m_windowFrameworkPtr == NULL)
     {
@@ -175,7 +176,8 @@ void Adventure3D::init_scene(WindowFramework* windowFrameworkPtr)
     start_carousel();
 
     m_windowFrameworkPtr->get_panda_framework()->define_key("escape", "sysExit", sys_exit, NULL);
-    m_windowFrameworkPtr->get_panda_framework()->define_key("o", "sysExit", removeNode, this);
+    m_windowFrameworkPtr->get_panda_framework()->define_key("o", "removeNode", removeNode, this);
+    m_windowFrameworkPtr->get_panda_framework()->define_key("p", "addNodes", addNodes, this);
 }
 
 void Adventure3D::setup_style(Style style)
@@ -536,8 +538,28 @@ void Adventure3D::sys_exit(const Event* eventPtr, void* dataPtr)
 
 void Adventure3D::removeNode(const Event* eventPtr, void* dataPtr)
 {
-    static_cast<Adventure3D*>(dataPtr)->m_pandasNp[0].remove_node();
-    static_cast<Adventure3D*>(dataPtr)->m_carouselNp.remove_node();
+    if (static_cast<Adventure3D*>(dataPtr)->scene_loaded)
+    {
+        static_cast<Adventure3D*>(dataPtr)->m_pandasNp[0].remove_node();
+        static_cast<Adventure3D*>(dataPtr)->m_carouselNp.remove_node();
+        static_cast<Adventure3D*>(dataPtr)->m_envNp.remove_node();
+        static_cast<Adventure3D*>(dataPtr)->scene_loaded = false;
+    }
+    
+}
+
+void Adventure3D::addNodes(const Event* eventPtr, void* dataPtr)
+{
+    if (!static_cast<Adventure3D*>(dataPtr)->scene_loaded)
+    {
+        // Load and position our models
+        static_cast<Adventure3D*>(dataPtr)->load_models();
+        // Add some basic lighting
+        static_cast<Adventure3D*>(dataPtr)->setup_lights();
+        // Create the needed intervals and put the carousel into motion
+        static_cast<Adventure3D*>(dataPtr)->start_carousel();
+        static_cast<Adventure3D*>(dataPtr)->scene_loaded = true;
+    }
 }
 
 

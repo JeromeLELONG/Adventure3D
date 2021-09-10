@@ -81,8 +81,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>F:\Projets\Panda3D\imgui-cmake\imgui;F:\Projets\Panda3D-1.10.10-x64\include;$(IncludePath)</IncludePath>
-    <LibraryPath>F:\Projets\Panda3D\imgui-cmake\build\dist\Release\lib;F:\Projets\Panda3D-1.10.10-x64\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Projets\imgui-cmake\libs\imgui;C:\Projets\Panda3D-1.10.10-x64\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Projets\imgui-cmake\build\libs\Release;C:\Projets\Panda3D-1.10.10-x64\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
